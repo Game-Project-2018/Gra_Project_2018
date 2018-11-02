@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\HighLighting.cs" />
     <Compile Include="Assets\MovementScripts\BaseStats.cs" />
     <Compile Include="Assets\MovementScripts\NPCMove.cs" />
     <Compile Include="Assets\MovementScripts\NPCTurn.cs" />
