@@ -24,9 +24,6 @@ public class NPCTurn : TacticsMove
 
         if (!moving)
         {
-			if(GetComponent<BaseStats>().HP<=0)
-				Destroy(this);
-			
             FindNearestTarget();
             Atack();
             CalculatePath();

@@ -56,7 +56,13 @@ public class PlayerTurn : TacticsMove
                     else
                         hit.collider.GetComponent<BaseStats>().HP -= this.GetComponent<BaseStats>().MeleAtack;
                     Alredy_atack = true;
-				}
+                    if (hit.collider.GetComponent<BaseStats>().HP <= 0)
+                    {
+                        Destroy(hit.collider.gameObject);
+
+                        
+                    }
+                }
             }
         }
     }

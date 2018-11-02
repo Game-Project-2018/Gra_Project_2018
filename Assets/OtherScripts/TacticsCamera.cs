@@ -4,13 +4,31 @@ using UnityEngine;
 
 public class TacticsCamera : MonoBehaviour 
 {
+    int rotation = 0;
+    public int rotation_speed = 1;
+
+    private void Update()
+    {
+        if (rotation > 0)
+        {
+            transform.Rotate(Vector3.up, rotation_speed, Space.Self);
+            rotation -= rotation_speed;
+        }
+        if (rotation < 0)
+        {
+            transform.Rotate(Vector3.up, -rotation_speed, Space.Self);
+            rotation += rotation_speed;
+        }
+    }
+
+
     public void RotateLeft()
     {
-        transform.Rotate(Vector3.up, 90, Space.Self);
+        rotation += 90;
     }
 
     public void RotateRight()
     {
-        transform.Rotate(Vector3.up, -90, Space.Self);
+        rotation -= 90;
     }
 }

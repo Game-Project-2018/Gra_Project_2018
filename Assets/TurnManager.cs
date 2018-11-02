@@ -81,4 +81,17 @@ public class TurnManager : MonoBehaviour
 
         list.Add(unit);
     }
+
+
+    public static void RemoveUnit(TacticsMove unit)
+    {
+        List<TacticsMove> list;
+
+
+            list = units[unit.tag];
+
+
+        list.Remove(unit);
+    }
+
 }
