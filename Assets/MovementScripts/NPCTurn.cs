@@ -28,6 +28,7 @@ public class NPCTurn : TacticsMove
 				Destroy(this);
 			
             FindNearestTarget();
+            Atack();
             CalculatePath();
             FindSelectableTiles();
             actualTargetTile.target = true;
@@ -64,4 +65,17 @@ public class NPCTurn : TacticsMove
 
         target = nearest;
     }
+
+    void Atack ()
+    {
+
+        Vector3 distance = new Vector3();
+        distance = target.transform.position - transform.position;
+
+        if (Mathf.Abs(distance.magnitude) > 1)
+            target.GetComponent<BaseStats>().HP -= this.GetComponent<BaseStats>().RangeAtack;
+        else
+            target.GetComponent<BaseStats>().HP -= this.GetComponent<BaseStats>().MeleAtack;
+    }
+
 }

@@ -49,8 +49,13 @@ public class PlayerTurn : TacticsMove
 					}
 				}
 				else if (hit.collider.tag == "NPC" && Alredy_atack==false) {
+                    Vector3 distance = new Vector3();
+                    distance = hit.collider.transform.position - transform.position;
+                    if (Mathf.Abs(distance.magnitude)>1)
 						hit.collider.GetComponent<BaseStats> ().HP -= this.GetComponent<BaseStats> ().RangeAtack;
-					Alredy_atack = true;
+                    else
+                        hit.collider.GetComponent<BaseStats>().HP -= this.GetComponent<BaseStats>().MeleAtack;
+                    Alredy_atack = true;
 				}
             }
         }
