@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class PlayerTurn : TacticsMove
 {
+    bool AtackTurn = false;
+    bool MoveTurn = false;
 	bool Alredy_atack=false;
-	void Start () 
+    bool Alredy_moved = false;
+    void Start () 
 	{
         Init();
 	}
@@ -19,17 +22,43 @@ public class PlayerTurn : TacticsMove
         {
             return;
         }
-
-        if (!moving)
+        if (MoveTurn == true)
         {
-            FindSelectableTiles();
-            CheckMouse();
+            if (!moving && !Alredy_moved)
+            {
+                FindSelectableTiles();
+                CheckMouse();
+            }
+            else 
+            {
+                Move();
+                Alredy_moved = true;
+            }
         }
         else
         {
-            Move();
+            CheckMouse();
         }
 	}
+
+   public void ButtonAtack()
+    {
+        AtackTurn = true;
+        MoveTurn = false;
+    }
+
+    public void ButtonMove()
+    {
+        AtackTurn = false;
+        MoveTurn = true;
+    }
+
+   public void ButtonEnd()
+    {
+        Alredy_moved = false;
+        Alredy_atack = false;
+        TurnManager.EndTurn();
+    }
 
     void CheckMouse()
     {
@@ -45,7 +74,7 @@ public class PlayerTurn : TacticsMove
 
 					if (t.selectable) {
 						MoveToTile (t);
-						Alredy_atack = false;
+						
 					}
 				}
 				else if (hit.collider.tag == "NPC" && Alredy_atack==false) {

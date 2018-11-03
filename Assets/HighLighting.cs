@@ -18,9 +18,9 @@ public class HighLighting : MonoBehaviour {
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
-            if (hit.collider.tag == "NPC")
+            if (hit.collider.tag == "NPC" || hit.collider.tag == "Player")
             {
-                hpText.text = hit.collider.GetComponent<BaseStats>().HP.ToString();
+                hpText.text = hit.collider.tag + " "  + hit.collider.GetComponent<BaseStats>().HP.ToString() + "/" + hit.collider.GetComponent<BaseStats>().MaxHP.ToString();
             }
 
         }
