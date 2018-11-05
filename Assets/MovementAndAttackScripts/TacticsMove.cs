@@ -13,7 +13,7 @@ public class TacticsMove : MonoBehaviour
     Tile currentTile;
 
     public bool moving = false;
-    public int move = 5;
+    public int moveRange = 5;
     public float jumpHeight = 2;
     public float moveSpeed = 2;
     public float jumpVelocity = 4.5f;
@@ -28,6 +28,7 @@ public class TacticsMove : MonoBehaviour
     bool movingEdge = false;
     Vector3 jumpTarget;
 
+    [HideInInspector]
     public Tile actualTargetTile;
 
     protected void Init()
@@ -90,7 +91,7 @@ public class TacticsMove : MonoBehaviour
 			t.GetComponent<Renderer>().material.color = Color.red;
 			currentTile.GetComponent<Renderer>().material.color = Color.magenta;
 
-            if (t.distance < move)
+            if (t.distance < moveRange)
             {
                 foreach (Tile tile in t.adjacencyList)
                 {
@@ -318,13 +319,13 @@ public class TacticsMove : MonoBehaviour
             next = next.parent;
         }
 
-        if (tempPath.Count <= move)
+        if (tempPath.Count <= moveRange)
         {
             return t.parent;
         }
 
         Tile endTile = null;
-        for (int i = 0; i <= move; i++)
+        for (int i = 0; i <= moveRange; i++)
         {
             endTile = tempPath.Pop();
         }
