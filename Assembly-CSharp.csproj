@@ -53,6 +53,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\FieldOfView\FieldOfView.cs" />
+     <Compile Include="Assets\FieldOfView\FieldOfViewEditor.cs" />
+     <Compile Include="Assets\FieldOfView\ViewRotationController.cs" />
      <Compile Include="Assets\HighLighting.cs" />
      <Compile Include="Assets\MovementAndAttackScripts\BaseStats.cs" />
      <Compile Include="Assets\MovementAndAttackScripts\NPCMove.cs" />
@@ -64,6 +67,8 @@
      <Compile Include="Assets\MovementAndAttackScripts\TurnManager.cs" />
      <Compile Include="Assets\OtherScripts\MenuScript.cs" />
      <Compile Include="Assets\OtherScripts\TacticsCamera.cs" />
+     <None Include="Assets\Shaders\Stencil Mask.shader" />
+     <None Include="Assets\Shaders\Stencil Object.shader" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>C:/Users/Maciek/Documents/GitHub/Gra_Project_2018/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
