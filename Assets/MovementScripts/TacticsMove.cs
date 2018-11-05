@@ -43,6 +43,7 @@ public class TacticsMove : MonoBehaviour
     {
         currentTile = GetTargetTile(gameObject);
         currentTile.current = true;
+
     }
 
     public Tile GetTargetTile(GameObject target)
@@ -86,6 +87,8 @@ public class TacticsMove : MonoBehaviour
 
             selectableTiles.Add(t);
             t.selectable = true;
+			t.GetComponent<Renderer>().material.color = Color.red;
+			currentTile.GetComponent<Renderer>().material.color = Color.magenta;
 
             if (t.distance < move)
             {
@@ -175,6 +178,8 @@ public class TacticsMove : MonoBehaviour
         foreach (Tile tile in selectableTiles)
         {
             tile.Reset();
+
+			tile.GetComponent<Renderer>().material.color = Color.white;
         }
 
         selectableTiles.Clear();

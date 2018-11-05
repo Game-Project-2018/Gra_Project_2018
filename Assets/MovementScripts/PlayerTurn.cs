@@ -73,7 +73,9 @@ public class PlayerTurn : TacticsMove
 					Tile t = hit.collider.GetComponent<Tile> ();
 
 					if (t.selectable) {
+						t.GetComponent<Renderer>().material.color = Color.green;
 						MoveToTile (t);
+
 						
 					}
 				}
