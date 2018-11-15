@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerMovementWorldMap : MonoBehaviour {
 
@@ -10,24 +11,27 @@ public class PlayerMovementWorldMap : MonoBehaviour {
 
     const int LEFT_MOUSE_BUTTON = 0;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start() {
         targetPosition = transform.position;
         isMoving = false;
     }
-	
-	// Update is called once per frame
-	void Update () {
-		if(Input.GetMouseButton(LEFT_MOUSE_BUTTON))
+
+    // Update is called once per frame
+    void Update() {
+        if (Input.GetMouseButton(LEFT_MOUSE_BUTTON))
         {
-            SetTargetPosition();
+            if(!EventSystem.current.IsPointerOverGameObject())
+            {
+                SetTargetPosition();
+            }
         }
 
-        if(isMoving)
+        if (isMoving)
         {
             MovePlayer();
         }
-	}
+    }
 
     void SetTargetPosition()
     {
@@ -35,7 +39,7 @@ public class PlayerMovementWorldMap : MonoBehaviour {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         float point = 0f;
 
-        if(plane.Raycast(ray, out point))
+        if (plane.Raycast(ray, out point))
         {
             targetPosition = ray.GetPoint(point);
         }
@@ -48,7 +52,7 @@ public class PlayerMovementWorldMap : MonoBehaviour {
         transform.LookAt(targetPosition);
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
 
-        if(transform.position == targetPosition)
+        if (transform.position == targetPosition)
         {
             isMoving = false;
         }

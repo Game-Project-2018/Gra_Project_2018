@@ -10,6 +10,8 @@ public class MapView : MonoBehaviour {
     private int ScreenHeight;
     public int Boundary;
     public int speed;
+    public int zoomMin;
+    public int zoomMax;
 
 
     // Use this for initialization
@@ -37,6 +39,22 @@ public class MapView : MonoBehaviour {
         if (Input.mousePosition.y < Boundary)
         {
             transform.position += new Vector3(0.0f, 0.0f, -Time.deltaTime * speed);
+        }
+
+        //zoom
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        {
+            if (GetComponent<Camera>().fieldOfView > zoomMin)
+            {
+                GetComponent<Camera>().fieldOfView--;
+            }
+        }
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        {
+            if (GetComponent<Camera>().fieldOfView < zoomMax)
+            {
+                GetComponent<Camera>().fieldOfView++;
+            }
         }
     }
 }
