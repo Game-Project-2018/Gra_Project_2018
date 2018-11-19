@@ -86,4 +86,9 @@ public class PlayerMovementWorldMap : MonoBehaviour {
             return hour;
         }
     }
+
+    public void StopPlayer()
+    {
+        targetPosition = transform.position;
+    }
 } 
